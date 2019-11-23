@@ -6,8 +6,8 @@
 #include <algorithm>
 #include <random>
 
-#include "Pilha.hpp"
-#include "Carta.hpp"
+#include "../include/Pilha.hpp"
+#include "../include/Carta.hpp"
 
 Pilha::Pilha() : Baralho::Baralho(){
 }
