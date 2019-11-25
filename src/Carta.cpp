@@ -1,4 +1,4 @@
-#include "Carta.hpp"
+#include "../include/Carta.hpp"
 
 //Retorna o ID da carta atual
 int Carta::getId(){
