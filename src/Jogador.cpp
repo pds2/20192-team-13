@@ -1,5 +1,5 @@
-#include ".../include/Jogador.hpp"
-#include ".../include/Baralho.hpp"
+#include "../include/Jogador.hpp"
+#include "../include/Baralho.hpp"
 
 #include <map>
 #include <vector>
