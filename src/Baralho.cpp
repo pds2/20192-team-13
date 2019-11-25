@@ -1,5 +1,5 @@
-#include "Baralho.hpp"
-#include "Carta.hpp"
+#include "../include/Baralho.hpp"
+#include "../include/Carta.hpp"
 #include <fstream>
 #include <iostream> 
 #include <vector>
