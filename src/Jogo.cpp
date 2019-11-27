@@ -70,7 +70,12 @@ void Jogo::criaJogadores(Baralho *baralhoTeste, Pilha *novaPilha){
 	std::cout << "Insira o número de jogadores:" << std::endl;
 
 	//Recebe o número de jogadores
-	std::cin >> numeroDeJogadores;
+	do{
+		std::cin >> numeroDeJogadores;
+		if ((numeroDeJogadores < 2)||(numeroDeJogadores > 5)){
+			std::cout<< "Numero de jogadores invalido"<< std::endl;
+		}
+	}while((numeroDeJogadores < 2)||(numeroDeJogadores > 5));
 
 	//Para cada jogador, pede o seu nome
 	for (int i = 0; i < numeroDeJogadores; i++){
