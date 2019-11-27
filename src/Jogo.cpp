@@ -73,7 +73,7 @@ void Jogo::criaJogadores(Baralho *baralhoTeste, Pilha *novaPilha){
 	do{
 		std::cin >> numeroDeJogadores;
 		if ((numeroDeJogadores < 2)||(numeroDeJogadores > 5)){
-			std::cout<< "Numero de jogadores invalido"<< std::endl;
+			std::cout<< "Número de jogadores inválido"<< std::endl;
 		}
 	}while((numeroDeJogadores < 2)||(numeroDeJogadores > 5));
 
