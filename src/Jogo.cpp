@@ -94,3 +94,88 @@ void Jogo::criaJogadores(Baralho *baralhoTeste, Pilha *novaPilha){
 	novaPilha->adicionaCarta(cartaAuxiliar);
 	this->jogadores = jogadores;
 }
+
+int Jogo::getJogadorAtual(){
+	return this->jogadorAtual;
+}
+
+void Jogo::setJogadorAtual(int indice){
+	this->jogadorAtual = indice;
+}
+
+int Jogo::proximoJogador(){
+	if (this->getJogadorAtual() == 0 && this->getSentido() == -1){
+		return this->getNumJogadores()-1;
+	}
+	return (this->getJogadorAtual()+this->getSentido())%this->getNumJogadores();
+}
+
+std::vector<Jogador> Jogo::getJogadores(){
+	return this->jogadores;
+}
+
+void Jogo::aguardaComando(std::string c){
+	//Variável auxiliar para guardar o comando do jogador atual
+	std::string comandoDoJogador;
+	do {
+		std::cin >> comandoDoJogador;
+	} while(comandoDoJogador != c);
+}
+
+std::string Jogo::aguardaJogadaValida(Jogo jogoAtual, Jogador jogadorAtual, Pilha pilhaDeDescartes, int corAuxiliar){
+	std::string comandoDoJogador = "";
+	std::cout << "Digite o indice da carta ou a ação desejada:" << std::endl;
+	do {
+		if (comandoDoJogador != "") {
+			std::cout << "Ação ou carta inválida, tente novamente" << std::endl;
+		}
+		std::cin >> comandoDoJogador;
+	} while(comandoDoJogador != "c" && comandoDoJogador != "u" && !jogoAtual.checaIndiceValido(jogadorAtual, comandoDoJogador, pilhaDeDescartes, corAuxiliar));
+	return comandoDoJogador;
+}
+
+void Jogo::setJogador(int indice, Jogador novoJogador){
+	this->jogadores[indice] = novoJogador;
+}
+
+int Jogo::checaIndiceValido(Jogador jogadorAtual, std::string comandoDoJogador, Pilha descartes, int corAuxiliar){
+	try{
+		int check = jogadorAtual.checkCarta(jogadorAtual.getMao().retornaCarta(std::stoi(comandoDoJogador)),descartes, corAuxiliar);
+		return check;
+	}
+	catch(...){
+		return 0;
+	}
+}
+
+int Jogo::realizaEfeitoCartaEspecial(Jogador *jogadorAtual, Baralho *baralhoTeste, Pilha descartes, int proximoJogadorBloqueado){
+	if (!proximoJogadorBloqueado){
+		return 0; 
+	}
+	Carta cartaTopo = descartes.topoDoBaralho();
+	if(cartaTopo.getId() == 14) {
+		for(int k=1;k<=4;k++) {
+			jogadorAtual->compraCarta(baralhoTeste);
+		}
+		return 1;
+	}
+	if(cartaTopo.getId() == 10) {
+		for(int k=1;k<=2;k++) {
+			jogadorAtual->compraCarta(baralhoTeste);
+		}
+		return 1;
+	}
+	if(cartaTopo.getId() == 11) {
+		return 1;
+	}
+	return 0;
+}
+
+void Jogo::imprimeJogada(Pilha pilhaDeDescartes, Jogador jogadorAtual, int corAuxiliar, std::map <int, std::string> mapeamentoCartas, std::map <int, std::string> mapeamentoCores){
+	std::system("clear");
+	std::cout << "--------------------------" << std::endl; 
+	pilhaDeDescartes.imprimeTopo(mapeamentoCartas, mapeamentoCores, corAuxiliar);  
+	std::cout << "--------------------------" << std::endl;   
+	jogadorAtual.imprimeMao(mapeamentoCartas, mapeamentoCores);
+	std::cout << "--------------------------" << std::endl;
+}
