@@ -1,8 +1,8 @@
-#include "Carta.hpp"
-#include "Baralho.hpp"
-#include "Pilha.hpp"
-#include "Jogador.hpp"
-#include "Jogo.hpp"
+#include "../include/Carta.hpp"
+#include "../include/Baralho.hpp"
+#include "../include/Pilha.hpp"
+#include "../include/Jogador.hpp"
+#include "../include/Jogo.hpp"
 
 #include <map>
 
