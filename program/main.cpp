@@ -8,6 +8,8 @@
 
 int main(int argc, char const *argv[])
 {
+	std::cout << "Bem vindo ao jogo UNO!" << std::endl;
+
 	//Inicia um novo jogo
 	Jogo jogoAtual;
 	
@@ -36,6 +38,8 @@ int main(int argc, char const *argv[])
 	int corAuxiliar = -1;
 	//Flag de controle de bloqueio
 	int proximoJogadorBloqueado = 0;
+
+	std::cout << "Bem vindo ao jogo UNO!" << std::endl;
 
 	//Executa o jogo enquanto não houver vencedor
 	while(nomeDoVencedor == ""){

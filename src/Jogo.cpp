@@ -66,16 +66,19 @@ void Jogo::criaJogadores(Baralho *baralhoTeste, Pilha *novaPilha){
 	std::vector<Jogador> jogadores;
 	std::string nomeDoJogador;
 
-	std::cout << "Bem vindo ao jogo UNO!" << std::endl;
 	std::cout << "Insira o número de jogadores:" << std::endl;
 
 	//Recebe o número de jogadores
-	while((numeroDeJogadores < 2)||(numeroDeJogadores > 5)){
-
+	try{
 		std::cin >> numeroDeJogadores;
 		if ((numeroDeJogadores < 2)||(numeroDeJogadores > 5)){
-			std::cout<< "Número de jogadores inválido"<< std::endl;
+			throw "Número de jogadores deve ser de 2 a 5";
 		}
+	}
+	catch(const char* Erro){
+		std::cout << Erro << std::endl;
+		criaJogadores(baralhoTeste, novaPilha);
+		return;
 	}
 
 	//Para cada jogador, pede o seu nome
@@ -123,9 +126,20 @@ std::vector<Jogador> Jogo::getJogadores(){
 void Jogo::aguardaComando(std::string c){
 	//Variável auxiliar para guardar o comando do jogador atual
 	std::string comandoDoJogador;
-	do {
+				// do {
+				// 	std::cin >> comandoDoJogador;
+				// } while(comandoDoJogador != c);
+	try{
 		std::cin >> comandoDoJogador;
-	} while(comandoDoJogador != c);
+		if (comandoDoJogador != c){
+			throw("Caractere inválido. Tente novamente.");
+		}
+	}
+	catch(const char* Erro){
+		std::cout << Erro << std::endl;
+		aguardaComando(c);
+	}
+	
 }
 
 std::string Jogo::aguardaJogadaValida(Jogo jogoAtual, Jogador jogadorAtual, Pilha pilhaDeDescartes, int corAuxiliar){
