@@ -1,4 +1,4 @@
-#include "doctest.h"
+#include "../third_party/doctest.h"
 
 #include "../include/Jogo.hpp"
 #include "../include/Baralho.hpp"
