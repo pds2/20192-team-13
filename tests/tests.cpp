@@ -1,3 +1,5 @@
+#include "doctest.h"
+
 #include "../include/Jogo.hpp"
 #include "../include/Baralho.hpp"
 #include <vector>
